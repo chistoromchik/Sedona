@@ -1,0 +1,61 @@
+// author - DEV-Penguin-DEV[https://github.com/DEV-Penguin-DEV]
+
+@mixin wrapper($padding, $width: 100vw, $max-width: 100vw) {
+    padding: 0 $padding;
+    width: calc($width - ($padding * 2));
+    margin: 0 auto;
+    max-width: calc($max-width - ($padding * 2));
+  }
+  
+  @mixin default-pseudo-element($width, $height: $width) {
+    content: '';
+    position: absolute;
+    width: $width;
+    height: $height;
+  }
+  
+  @mixin centering-absolute-element() {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @mixin centering-vertical-absolute-element() {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @mixin centering-horizontal-absolute-element() {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  @mixin triangle(
+  $width: 15px,
+  $height: 15px,
+  $direction: 'down',
+  $border-color: #333333,
+  $border-type: solid
+) {
+  width: 0;
+  height: 0;
+  background: none;
+
+  @if $direction == 'up' or $direction == 'down' {
+    border-left: calc($width / 2) $border-type transparent;
+    border-right: calc($width / 2) $border-type transparent;
+  } @else {
+    border-top: calc($width / 2) $border-type transparent;
+    border-bottom: calc($width / 2) $border-type transparent;
+  }
+
+  @if $direction == 'up' {
+    border-bottom: $height $border-type $border-color;
+  } @else if $direction == 'left' {
+    border-right: $height $border-type $border-color;
+  } @else if $direction == 'right' {
+    border-left: $height $border-type $border-color;
+  } @else {
+    border-top: $height $border-type $border-color;
+  }
+}

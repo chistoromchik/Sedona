@@ -1,0 +1,31 @@
+.first-screen__image{
+    width: 100%;
+    margin-bottom: 59px;
+}
+.first-screen__title{
+    font-weight: 700;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 25px;
+
+    @media(max-width:767px){
+        font-size: 18px;
+        margin-bottom: 35px;
+        padding: 0px 20px;
+    }
+}
+.first-screen__container{
+    max-width: 483px;
+    margin: 0 auto;
+}
+.first-screen__text{
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 45px;
+
+    @media(max-width:767px){
+        margin-bottom: 32px;
+        padding: 0px 20px;
+    }
+}
