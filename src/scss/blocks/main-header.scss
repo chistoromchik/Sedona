@@ -23,12 +23,13 @@
     position: absolute;
     @include centering-horizontal-absolute-element();
     top: 0;
+    z-index: 9998;
 }
 .main-header__list{
     display: flex;
     justify-content: space-between;
     gap: 160px;
-
+    
     @media(max-width:767px){
         flex-direction: column;
         gap: 0px;

@@ -1,0 +1,345 @@
+@mixin scaleAnimation($el, $scaleTo, $duraction, $scaleFrom: 0, $delay: 0s) {
+  .block-animation {
+    &#{$el} {
+      scale: $scaleFrom;
+      will-change: scale;
+    }
+    &--active {
+      &#{$el} {
+        animation: scale $duraction $delay forwards ease-in-out;
+      }
+    }
+  }
+
+  @keyframes scale {
+    to {
+      scale: $scaleTo;
+    }
+  }
+}
+
+@mixin moveAnimation(
+  $el,
+  $duraction,
+  $distanse: 20vw,
+  $directionFrom: 'right',
+  $delay: 0s
+) {
+  .block-animation {
+    &#{$el} {
+      opacity: 0;
+      @if ($directionFrom == 'right') {
+        transform: translateX($distanse);
+      }
+      @if ($directionFrom == 'left') {
+        transform: translateX(calc(-1 * $distanse));
+      }
+      @if ($directionFrom == 'bottom') {
+        transform: translateY($distanse);
+      }
+      @if ($directionFrom == 'top') {
+        transform: translateY(calc(-1 * $distanse));
+      }
+      will-change: opacity, transform;
+    }
+
+    &--active {
+      &#{$el} {
+        animation: move $duraction $delay forwards ease-in-out;
+      }
+    }
+  }
+
+  @keyframes move {
+    to {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+}
+
+@mixin moveToAnimation($el, $duraction, $from: 0vw, $to: 100vw, $delay: 0s) {
+  .block-animation {
+    &#{$el} {
+      transform: translateX($from);
+      will-change: transform;
+    }
+
+    &--active {
+      &#{$el} {
+        animation: moveTo $duraction $delay forwards ease-in-out;
+      }
+    }
+  }
+
+  @keyframes moveTo {
+    to {
+      transform: translateX($to);
+    }
+  }
+}
+
+@mixin widthAnimation(
+  $el,
+  $duraction,
+  $widthFrom: 0vw,
+  $widthTo: 100vw,
+  $delay: 0s,
+  $modifier: ''
+) {
+  .block-animation {
+    &#{$el} {
+      width: $widthFrom;
+    }
+
+    &--active {
+      &#{$el} {
+        animation: width#{$modifier} $duraction $delay forwards ease-in-out;
+      }
+    }
+  }
+
+  @keyframes width#{$modifier} {
+    to {
+      width: $widthTo;
+    }
+  }
+}
+
+@mixin skewMoveAnimation(
+  $el,
+  $duraction,
+  $distance: 20vw,
+  $skewFrom: -30deg,
+  $skew50: 30deg,
+  $skewTo: 0deg,
+  $delay: 0s
+) {
+  .block-animation {
+    &#{$el} {
+      transform: translateX($distance * -1) skewX($skewFrom);
+      will-change: transform;
+    }
+
+    &--active {
+      &#{$el} {
+        animation: skewMove $duraction $delay forwards ease-in-out;
+      }
+    }
+  }
+
+  @keyframes skewMove {
+    50% {
+      transform: translateX($distance * 0.2) skewX($skew50);
+    }
+    to {
+      transform: translate(0, 0) skewX($skewTo);
+    }
+  }
+}
+
+@mixin opacityAnimation($el, $duraction, $from: 0, $to: 1, $delay: 0s) {
+  .block-animation {
+    &#{$el} {
+      opacity: $from;
+      will-change: opacity;
+    }
+    &--active {
+      &#{$el} {
+        animation: opacity $duraction $delay forwards ease-in-out;
+      }
+    }
+  }
+
+  @keyframes opacity {
+    to {
+      opacity: $to;
+    }
+  }
+}
+
+
+@include moveAnimation(
+  ".first-screen .first-screen__image ",
+  0.75s,
+  40px,
+  "top"
+);
+
+@include moveAnimation(
+  ".first-screen .first-screen__title ",
+  1s,
+  5vw,
+  "left"
+);
+
+@include moveAnimation(
+  ".first-screen .first-screen__text ",
+  1s,
+  5vw,
+  "right"
+);
+
+@include opacityAnimation(
+  ".benefit .benefit__text-container", 
+  1s, 
+);
+
+@include opacityAnimation(
+  ".benefit .benefit__image", 
+  1s, 
+);
+
+@include moveAnimation(
+    ".inner-benefit",
+    1s,
+    5vw,
+    "bottom"
+  );
+ 
+  @include moveAnimation(
+    ".reservetion .reservetion__title",
+    1s,
+    5vw,
+    "left"
+  );  
+
+  @include moveAnimation(
+    ".reservetion .reservetion__text",
+    1s,
+    5vw,
+    "right"
+  );   
+
+  @include opacityAnimation(
+  ".reservetion .reservetion__link", 
+  1s, 
+);
+
+@include widthAnimation(
+  ".reservetion .reservetion__map",
+  1.5s,
+);
+
+@include moveAnimation(
+  ".main-footer .main-footer__title",
+  1.5s,
+  20vw,
+  "left"
+);
+
+@include moveAnimation(
+  ".main-footer .main-footer__link",
+  1.5s,
+  20vw,
+  "right"
+); 
+
+
+@include moveAnimation(
+  ".main-footer .main-footer__container",
+  1.5s,
+  20vw,
+  "left"
+); 
+
+
+
+
+@media(max-width:1439px)
+{@include moveAnimation(
+  ".first-screen .first-screen__image ",
+  0.75s,
+  40px,
+  "top"
+);
+}
+
+@media(max-width:1439px)
+{@include moveAnimation(
+  ".first-screen .first-screen__title ",
+  1s,
+  5vw,
+  "left"
+);}
+
+@include moveAnimation(
+  ".first-screen .first-screen__text ",
+  1s,
+  5vw,
+  "right"
+);
+
+@media(max-width:1439px)
+{@include opacityAnimation(
+  ".benefit .benefit__text-container", 
+  1s, 
+);}
+
+@media(max-width:1439px)
+{@include opacityAnimation(
+  ".benefit .benefit__image", 
+  1s, 
+);}
+
+@media(max-width:1439px)
+{@include moveAnimation(
+    ".inner-benefit",
+    1s,
+    5vw,
+    "bottom"
+  );}
+ 
+  @media(max-width:1439px)
+{  @include moveAnimation(
+    ".reservetion .reservetion__title",
+    1s,
+    5vw,
+    "left"
+  ); } 
+
+  @media(max-width:1439px)
+{    @include moveAnimation(
+    ".reservetion .reservetion__text",
+    1s,
+    5vw,
+    "right"
+  ); }
+
+  @media(max-width:1439px)
+{  @include opacityAnimation(
+  ".reservetion .reservetion__link", 
+  1s, 
+);}
+
+@media(max-width:1439px)
+{@include widthAnimation(
+  ".reservetion .reservetion__map",
+  1.5s,
+);
+}
+
+@media(max-width:1439px)
+{@include moveAnimation(
+  ".main-footer .main-footer__title",
+  1.5s,
+  20vw,
+  "left"
+);
+}
+
+@media(max-width:1439px)
+{@include moveAnimation(
+  ".main-footer .main-footer__link",
+  1.5s,
+  20vw,
+  "right"
+); }
+
+@media(max-width:1439px)
+{@include moveAnimation(
+  ".main-footer .main-footer__container",
+  1.5s,
+  20vw,
+  "left"
+); }
